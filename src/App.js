@@ -13,8 +13,6 @@ import {
 
 function App() {
   const [state, dispatch] = useReducer(mainReducer, initialState);
-  console.log("STATE = " + JSON.stringify(state));
-
   return (
     <div className="App">
       <div className="mod">
@@ -61,7 +59,11 @@ function App() {
         <button
           id="reset"
           className="actionBtn"
-          onClick={() => dispatch({ type: RESET })}
+          onClick={() => {
+            dispatch({ type: RESET });
+            document.getElementById("beep").pause();
+            document.getElementById("beep").currentTime = 0;
+          }}
         >
           Reset
         </button>
